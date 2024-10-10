@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação de Números</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Validação de Formulário</h2>
+
+    <form id="numberForm">
+        <label for="campoA">Campo A:</label>
+        <input type="number" id="campoA" name="campoA" required>
+        <br><br>
+        <label for="campoB">Campo B:</label>
+        <input type="number" id="campoB" name="campoB" required>
+        <br><br>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <div id="message" class="message"></div>
+
+    <script>
+        const form = document.getElementById('numberForm');
+        const messageDiv = document.getElementById('message');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();  // Evita o envio do formulário
+
+            const campoA = parseFloat(document.getElementById('campoA').value);
+            const campoB = parseFloat(document.getElementById('campoB').value);
+
+            // Limpar mensagens anteriores
+            messageDiv.innerHTML = '';
+            messageDiv.classList.remove('success', 'error');
+
+            if (campoB > campoA) {
+                messageDiv.innerHTML = 'Formulário válido! O número B é maior que o número A.';
+                messageDiv.classList.add('success');
+            } else {
+                messageDiv.innerHTML = 'Formulário inválido! O número B deve ser maior que o número A.';
+                messageDiv.classList.add('error');
+            }
+        });
+    </script>
+
+</body>
+</html>
